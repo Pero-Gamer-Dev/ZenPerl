@@ -1,6 +1,6 @@
 # ZenPerl 🚀
 
-ZenPerl is a next-generation, high-performance **Minecraft server jar** built as a fork of [Paper](https://github.com). It is engineered specifically for hyper-demanding production networks that require absolute raw performance, stripped-back latency, and streamlined developer interfaces.
+ZenPerl is a high-performance **Minecraft server jar** built as a fork of [Paper](https://github.com/PaperMC/Paper).
 
 Unlike traditional server software that preserves legacy Bukkit limitations, ZenPerl bypasses structural bottlenecks to introduce **native performance patches** and a **modernized, lightweight API layer** designed to make server-side development faster, cleaner, and zero-overhead.
 
@@ -17,14 +17,14 @@ Unlike traditional server software that preserves legacy Bukkit limitations, Zen
 ZenPerl utilizes the modern `paperweight` toolchain to manage decompilation, mapping, and patching.
 
 ### Prerequisites
-* **Java 21** or higher (Depending on target Minecraft version)
+* **Java 25** (required by the current Gradle toolchain)
 * A git-configured terminal
 
 ### Compilation Steps
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/Pero-Gamer-Dev/ZenPerl.git
    cd ZenPerl
    ```
 
@@ -35,9 +35,9 @@ ZenPerl utilizes the modern `paperweight` toolchain to manage decompilation, map
 
 3. **Rebuild the production-ready server jar:**
    ```bash
-   ./gradlew createReobfPaperclipJar
+   ./gradlew :paper-server:createPaperclipJar
    ```
-   Your compiled server binary will be located in the `build/libs/` directory.
+   Your compiled server binary will be located in `paper-server/build/libs/`.
 
 ## 📄 License
-ZenPerl is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
+ZenPerl includes upstream projects under their respective licenses. See [License](License) for details.

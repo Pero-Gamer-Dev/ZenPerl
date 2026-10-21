@@ -13,23 +13,20 @@ if (!file(".git").exists()) {
     val errorText = """
 
         =====================[ ERROR ]=====================
-         The Paper project directory is not a properly cloned Git repository.
+         The ZenPerl project directory is not a properly cloned Git repository.
 
-         In order to build Paper from source you must clone
-         the Paper repository using Git, not download a code
+         In order to build ZenPerl from source you must clone
+         the ZenPerl repository using Git, not download a code
          zip from GitHub.
 
-         Built Paper jars are available for download at
-         https://papermc.io/downloads/paper
-
-         See https://github.com/PaperMC/Paper/blob/main/CONTRIBUTING.md
-         for further information on building and modifying Paper.
+         See https://github.com/Pero-Gamer-Dev/ZenPerl
+         for project information.
         ===================================================
     """.trimIndent()
     error(errorText)
 }
 
-rootProject.name = "paper"
+rootProject.name = "ZenPerl"
 
 for (name in listOf("paper-api", "paper-server")) {
     include(name)
@@ -59,12 +56,12 @@ fun optionalInclude(name: String, op: (ProjectDescriptor.() -> Unit)? = null) {
 
 gradle.lifecycle.beforeProject {
     val mcVersion = providers.gradleProperty("mcVersion").get().trim()
-    val paperVersionChannel = providers.gradleProperty("channel").get().trim()
-    val paperBuildNumber = providers.environmentVariable("BUILD_NUMBER").orNull?.trim()?.toInt()
-    val versionString = if (paperBuildNumber == null) {
+    val versionChannel = providers.gradleProperty("channel").get().trim()
+    val buildNumber = providers.environmentVariable("BUILD_NUMBER").orNull?.trim()?.toInt()
+    val versionString = if (buildNumber == null) {
         "$mcVersion.local-SNAPSHOT"
     } else {
-        "$mcVersion.build.$paperBuildNumber-${paperVersionChannel.lowercase()}"
+        "$mcVersion.build.$buildNumber-${versionChannel.lowercase()}"
     }
     version = versionString
 }

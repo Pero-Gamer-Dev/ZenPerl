@@ -7,6 +7,8 @@ plugins {
     id("io.papermc.paperweight.core") version "2.0.0-beta.24" apply false
 }
 
+val zenperlMavenUrl = providers.gradleProperty("zenperlMavenUrl")
+
 subprojects {
     apply {
         plugin("java-library")
@@ -71,11 +73,13 @@ subprojects {
         maven(paperMavenPublicUrl)
     }
 
-    extensions.configure<PublishingExtension> {
-        repositories {
-            maven("https://artifactory.papermc.io/artifactory/releases/") {
-                name = "paperReleases"
-                credentials(PasswordCredentials::class)
+    if (zenperlMavenUrl.isPresent) {
+        extensions.configure<PublishingExtension> {
+            repositories {
+                maven(zenperlMavenUrl.get()) {
+                    name = "zenperl"
+                    credentials(PasswordCredentials::class)
+                }
             }
         }
     }
@@ -88,7 +92,7 @@ tasks.register("printMinecraftVersion") {
     }
 }
 
-tasks.register("printPaperVersion") {
+tasks.register("printZenPerlVersion") {
     val paperVersion = provider { project.version }
     doLast {
         println(paperVersion.get())

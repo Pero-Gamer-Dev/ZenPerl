@@ -154,5 +154,5 @@ tasks.test {
     useJUnitPlatform()
 }
 
-group = "io.papermc.paper"
+group = "io.github.pero-gamer-dev"
 version = "1.0-SNAPSHOT"
